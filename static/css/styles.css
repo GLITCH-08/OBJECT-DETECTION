@@ -1,0 +1,74 @@
+body {
+  background-color: #3498db; /* Blue background */
+  color: #0f0e0e; /* White text */
+  font-family: Arial, sans-serif;
+}
+
+.class{
+  text-align: center;
+  
+}
+
+.line1{
+  margin-left: 128px;
+    font-family:Arial, sans-serif;
+    color: #0b0b0b;
+    font-size: 120%;
+}
+form {
+  
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* margin-top: 160px; */
+}
+
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-top: 170px;
+  margin-left: 240px;
+}
+
+.drop-container{
+
+border: 3px dashed rgb(89, 90, 92);
+border-radius: 13px;
+padding: 4px;
+text-align: center;
+cursor: pointer;
+}
+
+.con{
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #3498db; /* Blue button background */
+  color: #fff; /* White text on the button */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}

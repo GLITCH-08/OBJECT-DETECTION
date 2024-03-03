@@ -1,12 +1,17 @@
+<!-- Inside result.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Object Detection Result</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>Object Detection Result</h1>
-    <img src="{{ image_path }}" alt="Detected Objects">
+
+    <img src="{{ url_for('static', filename='faster_rcnn_resnet50_v1_640x640_coco17_tpu-8_result.jpg') }}" alt="Detected Objects">
+
 </body>
 </html>
