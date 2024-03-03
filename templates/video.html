@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection - Video</title>
+    <style>
+        body {
+            background-color: #3498db; /* Light gray background */
+            color: #333; /* Dark gray text */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #3498db; /* Blue heading text */
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 15px;
+            color: #555; /* Gray label text */
+            font-size: 18px;
+            text-align: left;
+        }
+        
+        input[type="file"] {
+            display: none; /* Hide the actual file input */
+        }
+        
+        .upload-button {
+            background-color: #3498db; /* Blue button background */
+            color: #fff; /* White text on the button */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Add smooth transition */
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .upload-button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+        
+        #video-container {
+            margin-top: 30px;
+            border-radius: 5px;
+            overflow: hidden; /* Hide overflow content */
+        }
+        
+        #uploaded-video {
+            width: 100%; /* Set video width to fill container */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .detect-button {
+            background-color: #27ae60; /* Green button background */
+            color: #fff; /* White text on the button */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Add smooth transition */
+        }
+
+        .detect-button:hover {
+            background-color: #219653; /* Darker green on hover */
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px dashed #3498db; /* Blue dashed border */
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+          }
+          
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Object Detection - Video</h1>
+
+        <form class="upload-container" action="/upload_video" method="post" enctype="multipart/form-data">
+            <label for="video">Choose a video:</label>
+            <label for="video" class="upload-button">Upload Video</label>
+            <input type="file" id="video" name="video" accept=".mp4, .avi, .mkv" required onchange="previewVideo(event)">
+            <br>
+
+            <div id="video-container">
+                <!-- This is where the video will be displayed -->
+                <video id="uploaded-video" src="" controls></video>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="detect-button">Detect Objects</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function previewVideo(event) {
+            const file = event.target.files[0];
+            const videoElement = document.getElementById('uploaded-video');
+            const videoURL = URL.createObjectURL(file);
+            videoElement.src = videoURL;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- Inside landing.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}"></head></head>
+
+</head>
+<body>
+    <h1>Welcome to the Object Detection App</h1>
+
+    <div>
+        <a href="{{ url_for('for_image') }}"><button>For Image</button></a>
+        <a href="{{ url_for('for_video') }}"><button>For Video</button></a>
+    </div>
+</body>
+</html>

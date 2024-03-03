@@ -1,63 +1,69 @@
 body {
-  background-color: #3498db; /* Blue background */
-  color: #0f0e0e; /* White text */
+  background-color: #3498db; /* Light gray background */
+  color: #333; /* Dark gray text */
   font-family: Arial, sans-serif;
-  text-align: center
-}
-
-.class{
   text-align: center;
-
+  margin: 0;
+  padding: 0;
 }
 
-.line1{
-    margin-left: 12px;
-    font-family:Arial, sans-serif;
-    color: #0b0b0b;
-    font-size: 120%;
-}
-form {
-  
+.container {
   max-width: 600px;
   margin: 50px auto;
+  padding: 20px;
   background-color: #fff;
-  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* margin-top: 160px; */
 }
 
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input {
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
+.heading {
   margin-bottom: 20px;
-  margin-top: 170px;
-  margin-left: 240px;
 }
 
-.drop-container{
-
-border: 3px dashed rgb(89, 90, 92);
-border-radius: 13px;
-padding: 4px;
-text-align: center;
-cursor: pointer;
+.heading h1 {
+  color: #3498db; /* Blue heading text */
+  font-size: 24px;
 }
 
-.con{
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #ffffff;
+.instructions {
+  margin-bottom: 20px;
+  color: #555; /* Gray instruction text */
+  font-size: 18px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #3498db; /* Blue dashed border */
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  cursor: pointer;
+}
+
+#fileInput {
+  display: none; /* Hide the actual file input */
+}
+
+#imagePreview {
+  max-width: 100%; /* Ensure the image preview fits within the container */
+  max-height: 200px; /* Adjust as needed */
+  margin-bottom: 10px; /* Add some space between the image preview and button */
+}
+
+#uploadButton {
+  background-color: #3498db; /* Blue button background */
+  color: #fff; /* White text on the button */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+#uploadButton:hover {
+  background-color: #2980b9; /* Darker blue on hover */
 }
 
 button {
@@ -67,10 +73,10 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 28px;
+
   
 }
 
 button:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9; /* Darker blue on hover */
 }
