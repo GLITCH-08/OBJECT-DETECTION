@@ -2,15 +2,16 @@ body {
   background-color: #3498db; /* Blue background */
   color: #0f0e0e; /* White text */
   font-family: Arial, sans-serif;
+  text-align: center
 }
 
 .class{
   text-align: center;
-  
+
 }
 
 .line1{
-  margin-left: 128px;
+    margin-left: 12px;
     font-family:Arial, sans-serif;
     color: #0b0b0b;
     font-size: 120%;
@@ -66,9 +67,10 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 28px;
   
 }
 
 button:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9; /* Darker blue on hover */
 }
