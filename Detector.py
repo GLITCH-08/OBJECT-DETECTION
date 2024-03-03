@@ -7,7 +7,8 @@ np.random.seed(20)
 
 class Detector:
     def __init__(self):
-        pass
+        self.cacheDir = "./pretrained_models"
+        
 
     def readClasses(self, classesFilePath):
         with open(classesFilePath, 'r') as f:
@@ -21,7 +22,7 @@ class Detector:
         filename = os.path.basename(modelURL)
         self.modelName = filename[:filename.index('.')]
 
-        self.cacheDir = "./pretrained_models"
+        
 
         os.makedirs(self.cacheDir, exist_ok=True)
 
@@ -29,7 +30,7 @@ class Detector:
 
 
     def loadModel(self):  
-        print("Loading Model "+ self.modelName)
+        # print("Loading Model "+ self.modelName)
         tf.keras.backend.clear_session()
         self.model = tf.saved_model.load(os.path.join(self.cacheDir, "checkpoints" , self.modelName , "saved_model"))
 
@@ -99,11 +100,12 @@ class Detector:
 
         bboxImage = self.createBoundingBox(image)
 
-
-        cv2.imwrite(self.modelName + ".jpg", bboxImage)
-        cv2.imshow("Result", bboxImage)
+        resultImagePath = os.path.join("static", self.modelName + "_result.jpg")
+        cv2.imwrite(resultImagePath, bboxImage)
+        # cv2.imshow("Result"+, bboxImage)
         cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
+        return resultImagePath
 
     def predictVideo(self, videoPath, threshold = 0.5):
         cap = cv2.VideoCapture(videoPath)
