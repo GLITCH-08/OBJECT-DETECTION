@@ -3,49 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object Detection App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>AI & ML Model Trainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #007bff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            color: #555555;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"],
+        .secondary-btn {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .secondary-btn {
+            background-color: #6c757d;
+        }
+        .secondary-btn:hover,
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            color: #333333;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="heading">
-            <h1>Object Detection App</h1>
-        </div>
-        <div class="instructions">
-            <p>Upload the image you want for scanning</p>
-        </div>
-        <form action="/upload" method="post" enctype="multipart/form-data" class="upload-container">
-            <label for="fileInput" class="file-input-label">
-                <img id="imagePreview" src="{{ url_for('static', filename='image/image.png') }}" alt="Preview">
-                <input type="file" id="fileInput" name="file" accept=".jpg, .jpeg, .png" required>
-                <div id="uploadButton">Upload File</div> <!-- Text for the button -->
-            </label>
-            <br>
-            <button type="submit">Detect Objects</button>
+        <h1>Training Custom Model</h1>
+        <form id="uploadForm">
+            <label for="driveLink">Dataset Drive Link:</label>
+            <input type="text" id="driveLink" name="driveLink" required>
+            <input type="submit" value="Train">
         </form>
+
+        <a href="/test" class="secondary-btn">Test Model</a>
+
+        <div id="status"></div>
     </div>
 
-    <!-- Separate JavaScript block for handling file input and preview -->
     <script>
-        document.getElementById('fileInput').addEventListener('change', function() {
-            var fileInput = document.getElementById('fileInput');
-            var imagePreview = document.getElementById('imagePreview');
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
             
-            // Check if a file is selected
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
+            var driveLink = document.getElementById('driveLink').value;
 
-                reader.onload = function(e) {
-                    // Set the src attribute of the image with the data URL
-                    imagePreview.src = e.target.result;
+            // Displaying initial training message
+            document.getElementById('status').innerText = "Training model...";
+
+            // Make a POST request to the Flask backend
+            fetch('/train', {
+                method: 'POST',
+                body: JSON.stringify({ driveLink: driveLink }),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Display training completion message
+                document.getElementById('status').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('status').innerText = 'An error occurred. Please try again.';
+            });
 
-                // Read the selected file as a data URL
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                // Reset the image preview if no file is selected
-                imagePreview.src = "{{ url_for('static', filename='image/image.png') }}";
-            }
+            // Change training message after a few seconds until it's done
+            setTimeout(function() {
+                document.getElementById('status').innerText = "Almost there...";
+            }, 14000); // Change message after 3 seconds
+
+            // Change training message to "Getting done..." after a bit more time
+            setTimeout(function() {
+                document.getElementById('status').innerText = "Getting done...";
+            }, 22000); // Change message after 6 seconds
         });
     </script>
 </body>

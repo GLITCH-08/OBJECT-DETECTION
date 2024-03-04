@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & ML Model Trainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #007bff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px; /* Increased width */
+            padding: 60px; /* Increased padding */
+            border-radius: 15px; /* Increased border radius */
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 40px; /* Increased margin */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            color: #555555;
+            font-size: 20px; /* Increased font size */
+            margin-bottom: 20px; /* Increased margin */
+        }
+        input[type="file"] {
+            padding: 15px; /* Increased padding */
+            margin-bottom: 30px; /* Increased margin */
+            border: 2px solid #cccccc; /* Increased border width */
+            border-radius: 8px; /* Increased border radius */
+            font-size: 18px; /* Increased font size */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button[type="button"] {
+            padding: 15px 30px; /* Increased padding */
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px; /* Increased border radius */
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 40px; /* Increased margin */
+            padding: 30px; /* Increased padding */
+            background-color: #f0f0f0;
+            border: 2px solid #dddddd; /* Increased border width */
+            border-radius: 8px; /* Increased border radius */
+            color: #333333;
+            text-align: center;
+        }
+        .result-item {
+            margin-bottom: 15px; /* Increased margin */
+        }
+        .result-label {
+            font-weight: bold;
+            margin-right: 10px; /* Increased margin */
+        }
+        .image-preview {
+            margin-bottom: 30px; /* Increased margin */
+            text-align: center;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px; /* Limit height */
+            border-radius: 8px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TESTING CUSTOM MODEL</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="file">Upload Image:</label>
+            <input type="file" id="file" name="file" accept="image/*" required onchange="previewImage(event)">
+            <div class="image-preview" id="imagePreview"></div> <!-- Image preview container -->
+            <button type="button" onclick="uploadImage()">Upload</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('imagePreview');
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var img = document.createElement('img');
+                    img.src = reader.result;
+                    preview.innerHTML = '';
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '';
+            }
+        }
+
+        function uploadImage() {
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                // Displaying initial message
+                document.getElementById('result').innerHTML = "<p>Processing...</p>";
+
+                // Make a POST request to the Flask backend
+                fetch('/test', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display result
+                    var resultHtml = "<p>Result:</p>";
+                    resultHtml += "<div class='result-item'><span class='result-label'>Accuracy:</span>" + data.accuracy + "</div>";
+                    resultHtml += "<div class='result-item'><span class='result-label'>Class Name:</span>" + data.class_name + "</div>";
+                    document.getElementById('result').innerHTML = resultHtml;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = 'An error occurred. Please try again.';
+                });
+            } else {
+                document.getElementById('result').innerText = 'Please select an image.';
+            }
+        }
+    </script>
+</body>
+</html>

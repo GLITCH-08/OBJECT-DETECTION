@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Object Detection App</h1>
+        </div>
+        <div class="instructions">
+            <p>Upload the image you want for scanning</p>
+        </div>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="upload-container">
+            <label for="fileInput" class="file-input-label">
+                <img id="imagePreview" src="{{ url_for('static', filename='image/image.png') }}" alt="Preview">
+                <input type="file" id="fileInput" name="file" accept=".jpg, .jpeg, .png" required>
+                <div id="uploadButton">Upload File</div> <!-- Text for the button -->
+            </label>
+            <br>
+            <button type="submit">Detect Objects</button>
+        </form>
+    </div>
+
+    <!-- Separate JavaScript block for handling file input and preview -->
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileInput = document.getElementById('fileInput');
+            var imagePreview = document.getElementById('imagePreview');
+            
+            // Check if a file is selected
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Set the src attribute of the image with the data URL
+                    imagePreview.src = e.target.result;
+                }
+
+                // Read the selected file as a data URL
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                // Reset the image preview if no file is selected
+                imagePreview.src = "{{ url_for('static', filename='image/image.png') }}";
+            }
+        });
+    </script>
+</body>
+</html>

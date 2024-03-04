@@ -1,20 +1,144 @@
-<!-- Inside landing.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}"></head></head>
+    <title>Your Website Landing Page</title>
+    <style>
 
+     
+        body, html {
+            background-color: rgb(208, 210, 211);
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+           
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 57%;
+            margin-left: 40px;
+            margin-right: 40px;
+            gap: 20px
+        }
+        .container1 {
+            display: flex;
+            flex-direction: row;
+            height: 57%;
+            margin-left: 40px;
+            margin-right: 40px;
+            gap: 20px
+        }
+
+        .left, .right {
+            margin-left: 2px;
+            margin-right: 2px;
+            width: 50%;
+            height: 99%;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+
+        .left1, .right1 {
+            margin-left: 2px;
+            margin-right: 2px;
+            width: 50%;
+            height: 99%;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+
+        .left {
+            background-color: #6a0dad; /* purple background for left */
+        }
+
+        .right {
+            background-color: #b482ff; /* light purple background for right */
+        }
+        .left1 {
+            background-color: #b482ff; /* purple background for left */
+        }
+
+        .right1 {
+            background-color: #6a0dad;
+             /* light purple background for right */
+        }
+
+        .left img, .right img {
+            width: 27%;
+            height: 41%; /* Set height to 35% */
+            border-radius: 50%; /* Make it circular */
+            display: block;
+            margin: 0 auto;
+        }
+        .left1 img, .right1 img {
+            width: 27%;
+            height: 41%; /* Set height to 35% */
+            border-radius: 50%; /* Make it circular */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .description {
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #fff;
+            color: #6a0dad;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .head{
+            text-align: center;
+            font-size: larger;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Object Detection App</h1>
+    <div class="head"><h1>Welcome to the Object Detection App</h1></div>
+    <div class="container">
+        <div class="left">
+            <img src="{{ url_for('static', filename='image/obj.jpg') }}" alt="Image">
+            <p class="description">Object Detection in IMAGE</p>
+            <a href="{{ url_for('for_image') }}" class="button">Try Image Detection</a>
+        </div>
+        <div class="right">
+            <img src="https://miro.medium.com/v2/resize:fit:1000/1*NLnnf_M4Nlm4p1GAWrWUCQ.gif" alt="Video Thumbnail">
+            <p class="description">Object Detection in VIDEO</p>
+            <a href="{{ url_for('for_video') }}" class="button">Try Video Detection</a>
+        </div>
+    </div>
+    <br>
+    <div class="container1">
+        <div class="left1">
+            <img src="{{ url_for('static', filename='image/train.jpg') }}" alt="Image">
+            <p class="description">Training of Custom CNN Model</p>
+            <a href="{{ url_for('train') }}" class="button">Try Custom training</a>
+        </div>
+        <div class="right1">
+            <img src="https://resumegenius.com/wp-content/uploads/resume-technical-skills-hero-500x333.jpg" alt="Video Thumbnail">
+            <p class="description">Testing Model</p>
+            <a href="{{ url_for('test') }}" class="button">Try Testing Model</a>
+        </div>
 
-    <div>
-        <a href="{{ url_for('for_image') }}"><button>For Image</button></a>
-        <a href="{{ url_for('for_video') }}"><button>For Video</button></a>
     </div>
 </body>
 </html>
