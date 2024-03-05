@@ -4,6 +4,10 @@
 
 This web application allows users to perform object detection on images and videos using the Faster R-CNN model. It provides a user-friendly interface for uploading images and videos, and it displays the results with bounding boxes around detected objects. You can also train custom CNN models for Your own personal use and then test there accuracy on the appliaction for an unseen data.
 
+![Uploading image.png…](./static/image/1.png)
+![Uploading image.png…](./static/image/2.png)
+
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -65,6 +69,14 @@ Image and video processing are handled by the `Detector.py` module. The `createB
 ## Flask Application
 
 The web application is ran on flask. You can choose the option to (`Image`, `Video`, `train`, `test`)The training and testing code is in `app.py`. It take a drive link and dowloads the dataset from there for prediction. In the testing part you can upload a image and test the model you trained on it.
+
+![Uploading image.png…](./static/image/train_1.jpg)
+![Uploading image.png…](./static/image/train_3.jpg)
+![Uploading image.png…](./static/image/test_2.jpg)
+
+
+![Uploading image.png…](.static/image/i.png)
+![Uploading image.png…](.static/image/v.png)
 
 
 
