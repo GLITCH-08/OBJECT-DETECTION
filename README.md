@@ -75,8 +75,8 @@ The web application is ran on flask. You can choose the option to (`Image`, `Vid
 ![Uploading image.png…](./static/image/test_2.jpg)
 
 
-![Uploading image.png…](.static/image/i.png)
-![Uploading image.png…](.static/image/v.png)
+![Uploading image.png…](./static/image/i.png)
+![Uploading image.png…](./static/image/v.png)
 
 
 
