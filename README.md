@@ -18,7 +18,7 @@ This web application allows users to perform object detection on images and vide
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/object-detection-webapp.git
+    git clone https://github.com/GLITCH-08/OBJECT-DETECTION.git
     ```
 
 2. **Set up a virtual environment (optional but recommended):**
