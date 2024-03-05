@@ -1,0 +1,9 @@
+Create a web application where users can
+upload an image, and the application uses a 
+pre-trained machine learning model (such as a
+convolutional neural network) to recognize
+objects or patterns in the image. Use HTML for
+the upload form, CSS for styling, JavaScript for
+interactivity, and Python with a library like
+TensorFlow or PyTorch for the machine learning
+model.

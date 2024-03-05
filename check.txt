@@ -1,0 +1,3 @@
+conda activate tf_gpu
+conda info --envs
+python new.py
